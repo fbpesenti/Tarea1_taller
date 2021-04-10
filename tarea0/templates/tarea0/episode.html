@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+        <!-- Content here -->
+            <div class="col">
+                <div class="card">
+
+                    <div class="card-body">
+                        {%for i in response%}
+                        <h3>{{i.series}}</h3>
+                        <p>Titulo: {{i.title}}</p>
+                        <p>Temporada: {{i.season}}</p>
+                        <p>Fecha de emisión: {{i.air_date}}</p>
+
+                        <div class="card-header">
+                            <p>Personajes: </p>
+                        </div>
+                        <ul class="list-group list-group-flush"></ul>
+                            {%for p in i.characters%}
+                            <li class="list-group-item"><a href="{{i.episode_id}}"> {{p}}</a></li>
+                            {%endfor%}
+                        </ul>
+                        {%endfor%}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

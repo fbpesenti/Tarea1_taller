@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <!-- Content here -->
+      <div class="col">
+        <h3> Better Call Saul</h3>
+        <div class="accordion" id="accordionExample">
+          <div>
+            <div>
+              {%for i in episodes%}
+                <li><a href="../episode/{{i.episode_id}}"> {{i.title}} </a></li>
+              {% endfor %}
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
