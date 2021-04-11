@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="row">
+            {%for i in response%}
+            <div class="col">
+                <img class="card-img-top" src="{{i.img}}">
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <h5 class="card-title"> {{i.name}}</h5>
+                    <div class="card-body">
+                        <p class="card-text">Sobrenombre: {{i.nickname}}</p>
+                        <p class="card-text">Estado: {{i.status}}</p>
+                        <p class="card-text">Actor: {{i.portrayed}}</p>
+                        <p class="card-text">Serie: {{i.category}}</p>
+                        <p class="card-text">Apariciones en Breaking Bad: </p>
+                        <div>
+                            <ul class="list-group list-group-flush"></ul>
+                                    {%for p in i.appearance%}
+                                        <a href="../breaking-bad/{{p}}"> {{p}} ; </a>
+                                    {%endfor%}
+                            </ul>
+                        </div>
+                        <p class="card-text">Apariciones en Better Call Saul: </p>
+                        <div>
+                            <ul class="list-group list-group-flush"></ul>
+                                    {%for p in i.better_call_saul_appearance%}
+                                        <a href="../bettercallsaul/{{p}}"> {{p}} ; </a>
+                                    {%endfor%}
+                            </ul>
+                        </div>
+                        <p class="card-text">Citas:</p>
+                        <div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+{% endblock content %}

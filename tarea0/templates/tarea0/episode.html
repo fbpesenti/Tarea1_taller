@@ -19,10 +19,12 @@
                         </div>
                         <ul class="list-group list-group-flush"></ul>
                             {%for p in i.characters%}
-                            <li class="list-group-item"><a href="{{i.episode_id}}"> {{p}}</a></li>
+
+                            <li class="list-group-item"><a href="/personaje/{{p|slugify}}"> {{p}}</a></li>
                             {%endfor%}
                         </ul>
                         {%endfor%}
+                        
                     </div>
 
                 </div>
