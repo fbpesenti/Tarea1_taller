@@ -44,7 +44,7 @@ def better(request, season):
 def episode(request, episode):
 
    if requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/episodes/'+str(episode)).status_code == 200:
-      response = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/episodes/'+str(episode)).json
+      response = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/episodes/'+str(episode)).json()
    
    return render(request, "tarea0/episode.html", {'response': response})
 
@@ -52,10 +52,21 @@ def personaje(request, personaje):
 
    personaje = personaje.replace('-','+')
    if requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+str(personaje)).status_code == 200 and requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/quote?author='+str(personaje)).status_code == 200:
-      response = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+str(personaje)).json
-      quotes = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/quote?author='+str(personaje))
+      response = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+str(personaje)).json()
+      quotes = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/quote?author='+str(personaje)).json()
    return render(request, "tarea0/personaje.html", {'response': response, 'quotes': quotes})
 
 def busqueda_personajes(request):
-
-   return render(request, "tarea0/busqueda_personaje.html")
+   personajes = []
+   personaje = request.GET['personaje']
+   personaje = personaje.replace(' ','+')
+   i = 0
+   count = 10
+   while count>=10:
+      if requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+str(personaje)+'&offset='+str(i)).status_code == 200:
+         personaje = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+str(personaje)+'&offset='+str(i)).json()
+      personajes.append(personaje)
+      count = len(personaje)
+      print(personajes)
+      i+=10
+   return render(request, "tarea0/busqueda_personaje.html", {'personaje': personajes})

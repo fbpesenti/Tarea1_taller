@@ -34,6 +34,9 @@
                         </div>
                         <p class="card-text">Citas:</p>
                         <div>
+                            {% for i in quotes%}
+                                <p>{{i.quote}}</p>
+                            {% endfor %}
                             
                         </div>
                     </div>
