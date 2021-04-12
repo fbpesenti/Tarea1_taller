@@ -9,7 +9,7 @@
         <h1>Personaje Buscado:</h1>
         {% for i in personaje%}
             {% for j in i%}
-            <li class="list-group-item"><a href="/personaje/{{i.name|slugify}}">{{j.name}}</a></li>
+            <li class="list-group-item"><a href="/personaje/{{j.name|slugify}}">{{j.name}}</a></li>
             {% endfor %}
         {% endfor %}
 
