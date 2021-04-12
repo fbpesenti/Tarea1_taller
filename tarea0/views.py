@@ -50,7 +50,7 @@ def episode(request, episode):
 
 def personaje(request, personaje):
 
-   personaje = personaje.replace('-','+')
+   personaje = personaje.replace(' ','+')
    if requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+str(personaje)).status_code == 200 and requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/quote?author='+str(personaje)).status_code == 200:
       response = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+str(personaje)).json()
       quotes = requests.get('https://tarea-1-breaking-bad.herokuapp.com/api/quote?author='+str(personaje)).json()
